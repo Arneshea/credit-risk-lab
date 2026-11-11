@@ -1,0 +1,33 @@
+=== taiwan | proposed model: 2 rules ===
+IF delay in the most recent month is Low AND share of credit limit in use is Medium AND months of active usage is High THEN LOW default risk
+IF average payment delay (last 6 months) is Medium THEN HIGH default risk
+
+--- Applicant A (low risk) (true outcome: repaid) ---
+Credit score: 99/100  (risk 0.01)  ->  Approve
+Main reasons:
+  - Because delay in the most recent month is Low and share of credit limit in use is Medium and months of active usage is High - this lowers your risk.  [rule strength 1.00]
+
+--- Applicant B (middle) (true outcome: repaid) ---
+Credit score: 87/100  (risk 0.13)  ->  Approve
+Main reasons:
+  - Because delay in the most recent month is Low and share of credit limit in use is Medium and months of active usage is High - this lowers your risk.  [rule strength 0.04]
+
+--- Applicant C (high risk) (true outcome: defaulted) ---
+Credit score: 4/100  (risk 0.96)  ->  Refer for review
+Main reasons:
+  - Because average payment delay (last 6 months) is Medium - this raises your risk.  [rule strength 0.98]
+What would help most:
+  - If your average payment delay (last 6 months) improved from 1.7 months to about 0.0 months, your risk would drop from 0.96 to 0.22.
+
+--- Applicant D (caught defaulter) (true outcome: defaulted) ---
+Credit score: 23/100  (risk 0.77)  ->  Refer for review
+Main reasons:
+  - Because average payment delay (last 6 months) is Medium - this raises your risk.  [rule strength 0.12]
+What would help most:
+  - If your average payment delay (last 6 months) improved from 0.3 months to about 0.0 months, your risk would drop from 0.77 to 0.22.
+  - If your delay in the most recent month improved from 2 months late to about 0 months late, your risk would drop from 0.77 to 0.27.
+
+--- Applicant E (correctly cleared) (true outcome: repaid) ---
+Credit score: 99/100  (risk 0.01)  ->  Approve
+Main reasons:
+  - Because delay in the most recent month is Low and share of credit limit in use is Medium and months of active usage is High - this lowers your risk.  [rule strength 0.74]

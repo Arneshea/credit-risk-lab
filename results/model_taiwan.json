@@ -1,0 +1,267 @@
+{
+  "dataset": "taiwan",
+  "model": {
+    "feature_names": [
+      "late_severity",
+      "recent_delay",
+      "repayment_ratio",
+      "utilization",
+      "activity",
+      "cashflow_regularity"
+    ],
+    "knots": [
+      [
+        0.053048498501544486,
+        0.5488360858097934,
+        0.9586409910225788
+      ],
+      [
+        0.048788071290782,
+        0.47169534220922715,
+        0.9051748744507132
+      ],
+      [
+        0.1589421815598618,
+        0.39620059314266887,
+        0.9345715351747126
+      ],
+      [
+        0.0,
+        0.1321941474283378,
+        0.9142091994431121
+      ],
+      [
+        0.1372700325509219,
+        0.7604643339925204,
+        0.8577822357343448
+      ],
+      [
+        0.0723128584377481,
+        0.45483562573261005,
+        0.9035263176472168
+      ]
+    ],
+    "genes": [
+      [
+        1,
+        0,
+        2,
+        1,
+        0,
+        0
+      ],
+      [
+        3,
+        2,
+        3,
+        1,
+        0,
+        3
+      ],
+      [
+        0,
+        1,
+        0,
+        2,
+        3,
+        0
+      ],
+      [
+        2,
+        0,
+        1,
+        0,
+        3,
+        0
+      ],
+      [
+        2,
+        3,
+        2,
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        3,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        1,
+        3,
+        1,
+        1,
+        1
+      ]
+    ],
+    "cons": [
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0
+    ],
+    "enabled": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    "prior": 0.22104420884176834
+  },
+  "threshold": 0.2578507911203637,
+  "good_values": {
+    "late_severity": 0.0,
+    "recent_delay": 0.0,
+    "repayment_ratio": 1.0,
+    "utilization": 0.0042408333333333334,
+    "activity": 1.0,
+    "cashflow_regularity": 0.9058348549189873
+  },
+  "meta": {
+    "features": [
+      "late_severity",
+      "recent_delay",
+      "repayment_ratio",
+      "utilization",
+      "activity",
+      "cashflow_regularity"
+    ],
+    "labels": {
+      "late_severity": "average payment delay (last 6 months)",
+      "recent_delay": "delay in the most recent month",
+      "repayment_ratio": "share of billed amount actually repaid",
+      "utilization": "share of credit limit in use",
+      "activity": "months of active usage",
+      "cashflow_regularity": "regularity of repayment amounts"
+    },
+    "direction": {
+      "late_severity": "lower",
+      "recent_delay": "lower",
+      "repayment_ratio": "higher",
+      "utilization": "lower",
+      "activity": null,
+      "cashflow_regularity": "higher"
+    },
+    "unit": {
+      "late_severity": [
+        3,
+        "{:.1f} months"
+      ],
+      "recent_delay": [
+        3,
+        "{:.0f} months late"
+      ],
+      "repayment_ratio": [
+        100,
+        "{:.0f}%"
+      ],
+      "utilization": [
+        100,
+        "{:.0f}%"
+      ],
+      "activity": [
+        6,
+        "{:.0f} of 6 months"
+      ],
+      "cashflow_regularity": [
+        1,
+        "{:.2f} (0-1)"
+      ]
+    }
+  },
+  "samples": [
+    {
+      "name": "Applicant A (low risk)",
+      "x": [
+        0.0,
+        0.0,
+        0.9840578989255869,
+        0.13402666666666666,
+        1.0,
+        0.18534144316495194
+      ],
+      "actual_default": 0
+    },
+    {
+      "name": "Applicant B (middle)",
+      "x": [
+        0.0,
+        0.0,
+        0.8911199095022625,
+        0.004911111111111112,
+        1.0,
+        0.5253494022089906
+      ],
+      "actual_default": 0
+    },
+    {
+      "name": "Applicant C (high risk)",
+      "x": [
+        0.5555555555555556,
+        0.6666666666666666,
+        0.03241851864182099,
+        1.0,
+        1.0,
+        0.6067770494860287
+      ],
+      "actual_default": 1
+    },
+    {
+      "name": "Applicant D (caught defaulter)",
+      "x": [
+        0.1111111111111111,
+        0.6666666666666666,
+        0.18887971004654172,
+        0.6751494047619048,
+        0.8333333333333334,
+        0.0342156956075268
+      ],
+      "actual_default": 1
+    },
+    {
+      "name": "Applicant E (correctly cleared)",
+      "x": [
+        0.0,
+        0.0,
+        0.5452556569571196,
+        0.3393515151515151,
+        1.0,
+        0.04122310278539998
+      ],
+      "actual_default": 0
+    }
+  ],
+  "feature_names": [
+    "late_severity",
+    "recent_delay",
+    "repayment_ratio",
+    "utilization",
+    "activity",
+    "cashflow_regularity"
+  ],
+  "rules": [
+    "IF delay in the most recent month is Low AND share of credit limit in use is Medium AND months of active usage is High THEN LOW default risk",
+    "IF average payment delay (last 6 months) is Medium THEN HIGH default risk"
+  ]
+}

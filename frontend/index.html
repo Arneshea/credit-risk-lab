@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a101b">
+  <title>Soft Computing Lab | Credit Risk</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#home" aria-label="Soft Computing Lab home">
+        <span class="brand-mark">SC</span>
+        <span><strong>Soft Computing</strong><small>Credit Risk Lab</small></span>
+      </a>
+      <div class="side-label">PROJECT MODES</div>
+      <nav class="mode-nav" aria-label="Project modes">
+        <button class="mode-button active" data-mode="lab"><span class="nav-icon">◈</span><span>Model comparison</span><span class="nav-arrow">↗</span></button>
+        <button class="mode-button" data-mode="legacy"><span class="nav-icon">⌁</span><span>Legacy score demo</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <span class="live-dot"></span><span>Local research prototype</span>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><span>SOFT COMPUTING PBL</span><span class="course-chip">Fuzzy · Evolutionary · Neural</span></header>
+
+      <section id="lab-view" class="view active-view">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-line"></span>EXPLAINABLE CREDIT RISK · MODEL STUDY</div>
+            <h1>Evolutionary neuro-fuzzy<br><em>credit scoring.</em></h1>
+            <p>Use genetic search to discover fuzzy rules, then learn their memberships with backpropagation. Compare the hybrid with a neural network.</p>
+            <button id="run-benchmark" class="button button-primary">Run model comparison <span>→</span></button>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="orbit-core">NF</div>
+            <div class="orbit-node node-one">IF</div><div class="orbit-node node-two">BP</div><div class="orbit-node node-three">THEN</div>
+            <div class="art-caption">EVOLUTION + BACKPROP</div>
+          </div>
+        </div>
+
+        <div class="notice"><span class="notice-icon">i</span><p><strong>Research scope:</strong> the bundled datasets contain credit applicants, not gig workers or UPI histories. This comparison demonstrates the methods; it does not validate lending decisions for gig workers.</p></div>
+
+        <div class="section-heading">
+          <div><div class="eyebrow">01 / BENCHMARK</div><h2>Compare the models</h2><p>Both models use the same stratified split. Thresholds are selected on validation data.</p></div>
+          <label class="dataset-picker">DATASET
+            <select id="dataset-select" aria-label="Benchmark dataset">
+              <option value="taiwan">Taiwan credit default</option>
+              <option value="german">German credit</option>
+            </select>
+          </label>
+        </div>
+        <div id="benchmark-status" class="status-line" aria-live="polite">Preparing benchmark…</div>
+        <div id="dataset-summary" class="dataset-summary hidden"></div>
+        <div id="method-summary" class="notice method-summary hidden"></div>
+        <div id="metric-grid" class="metric-grid"></div>
+        <div id="model-grid" class="model-grid"></div>
+
+        <section class="method-section">
+          <div class="section-heading compact"><div><div class="eyebrow">02 / METHODS</div><h2>What each method contributes</h2></div></div>
+          <div class="method-grid">
+            <article class="method-card method-fuzzy"><div class="method-icon">μ</div><span class="method-tag">FUZZY LOGIC</span><h3>Readable categories</h3><p>Turns numeric features into Low, Medium, and High memberships that can be expressed as IF–THEN rules.</p></article>
+            <article class="method-card method-ga"><div class="method-icon">↗</div><span class="method-tag">EVOLUTIONARY ALGORITHM</span><h3>Searches rule structures</h3><p>A genetic algorithm evolves fuzzy rule antecedents and Gaussian membership sets, balancing testable discrimination with rule compactness.</p></article>
+            <article class="method-card method-ann"><div class="method-icon">⌘</div><span class="method-tag">NEURAL LEARNING</span><h3>Fine-tunes the fuzzy system</h3><p>Backpropagation adjusts membership centers, widths, and Sugeno rule outputs. A separate MLP is shown as a neural-network baseline.</p></article>
+          </div>
+        </section>
+        <footer class="page-footer">For coursework demonstration only · The legacy credit-card scorer remains available in Project Modes.</footer>
+      </section>
+
+      <section id="legacy-view" class="view" hidden>
+        <div class="section-heading legacy-heading"><div><div class="eyebrow">LEGACY FEATURE · ORIGINAL FUZZY-GA MODEL</div><h1>Credit-card history demo</h1><p>Score the original Taiwan model using six months of card statement history.</p></div><span class="legacy-pill">Original project preserved</span></div>
+        <div class="notice warning-notice"><span class="notice-icon">!</span><p>This is the original saved model. It was trained on Taiwan credit-card records; it does not use UPI, gig-worker income, or the requested loan amount to determine risk.</p></div>
+        <form id="legacy-form" class="legacy-form">
+          <div class="form-top-grid">
+            <label>Customer reference <span class="optional">OPTIONAL</span><input id="customer-ref" type="text" maxlength="100" placeholder="e.g. Demo applicant"></label>
+            <label>Requested amount (₹) <span class="optional">DISPLAY ONLY</span><input id="requested-amount" type="number" min="1000" max="10000000" step="5000" value="50000" required></label>
+            <label>Credit limit <span class="optional">TRAINING DATA CURRENCY</span><input id="credit-limit" type="number" min="1000" max="5000000" step="5000" value="100000" required></label>
+          </div>
+          <div class="form-section-title"><div><div class="eyebrow">SIX-MONTH HISTORY</div><h2>Statement and payment details</h2></div><span>Month 1 is most recent</span></div>
+          <div class="payment-table-wrap"><table class="payment-table"><thead><tr><th>MONTH</th><th>PAYMENT STATUS</th><th>BILL AMOUNT</th><th>AMOUNT PAID</th></tr></thead><tbody id="month-rows"></tbody></table></div>
+          <div class="form-actions"><p>Enter each month’s actual statement and payment figures. The app does not roll unpaid balances forward for you.</p><button class="button button-primary" type="submit">Predict risk <span>→</span></button></div>
+        </form>
+        <div id="legacy-status" class="status-line" aria-live="polite"></div>
+        <section id="legacy-result" class="legacy-result hidden" aria-live="polite"></section>
+        <footer class="page-footer">This score is an academic demonstration, not an actual credit or loan approval.</footer>
+      </section>
+    </main>
+  </div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

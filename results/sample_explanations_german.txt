@@ -1,0 +1,40 @@
+=== german | proposed model: 3 rules ===
+IF past credit history risk is Low AND loan duration is Low THEN LOW default risk
+IF checking-account status risk is Low AND length of employment is High THEN LOW default risk
+IF checking-account status risk is High AND savings level risk is High AND loan duration is Medium THEN HIGH default risk
+
+--- Applicant A (low risk) (true outcome: repaid) ---
+Credit score: 99/100  (risk 0.01)  ->  Approve
+Main reasons:
+  - Because checking-account status risk is Low and length of employment is High - this lowers your risk.  [rule strength 1.00]
+  - Because past credit history risk is Low and loan duration is Low - this lowers your risk.  [rule strength 0.94]
+
+--- Applicant B (middle) (true outcome: repaid) ---
+Credit score: 95/100  (risk 0.05)  ->  Approve
+Main reasons:
+  - Because past credit history risk is Low and loan duration is Low - this lowers your risk.  [rule strength 0.24]
+What would help most:
+  - If your past credit history risk improved from 0.31 to about 0.00, your risk would drop from 0.05 to 0.01.
+
+--- Applicant C (high risk) (true outcome: defaulted) ---
+Credit score: 5/100  (risk 0.95)  ->  Refer for review
+Main reasons:
+  - Because checking-account status risk is High and savings level risk is High and loan duration is Medium - this raises your risk.  [rule strength 0.72]
+What would help most:
+  - If your checking-account status risk improved from 1.00 to about 0.00, your risk would drop from 0.95 to 0.01.
+  - If your savings level risk improved from 1.00 to about 0.06, your risk would drop from 0.95 to 0.30.
+
+--- Applicant D (caught defaulter) (true outcome: defaulted) ---
+Credit score: 5/100  (risk 0.95)  ->  Refer for review
+Main reasons:
+  - Because checking-account status risk is High and savings level risk is High and loan duration is Medium - this raises your risk.  [rule strength 0.72]
+What would help most:
+  - If your loan duration improved from 48 months to about 9 months, your risk would drop from 0.95 to 0.05.
+  - If your checking-account status risk improved from 1.00 to about 0.00, your risk would drop from 0.95 to 0.16.
+
+--- Applicant E (correctly cleared) (true outcome: repaid) ---
+Credit score: 95/100  (risk 0.05)  ->  Approve
+Main reasons:
+  - Because past credit history risk is Low and loan duration is Low - this lowers your risk.  [rule strength 0.24]
+What would help most:
+  - If your past credit history risk improved from 0.31 to about 0.00, your risk would drop from 0.05 to 0.02.

@@ -1,0 +1,268 @@
+{
+  "dataset": "german",
+  "model": {
+    "feature_names": [
+      "account_risk",
+      "history_risk",
+      "savings_risk",
+      "employment_length",
+      "loan_duration",
+      "installment_burden"
+    ],
+    "knots": [
+      [
+        0.0,
+        0.4202898984101937,
+        0.9496619395859532
+      ],
+      [
+        0.017654975034752832,
+        0.4005463898980801,
+        0.939491031573528
+      ],
+      [
+        0.01935624953800051,
+        0.33227421596053064,
+        0.7319363347099654
+      ],
+      [
+        0.15639046530868672,
+        0.4881594778401617,
+        0.7467097575608984
+      ],
+      [
+        0.14147319378561168,
+        0.5623138943936261,
+        0.9368319485237256
+      ],
+      [
+        0.05831135940975908,
+        0.5718108192537952,
+        0.7854841748202613
+      ]
+    ],
+    "genes": [
+      [
+        3,
+        0,
+        0,
+        3,
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        1,
+        2
+      ],
+      [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        3,
+        0,
+        0
+      ],
+      [
+        3,
+        3,
+        1,
+        3,
+        0,
+        1
+      ],
+      [
+        3,
+        0,
+        3,
+        0,
+        2,
+        0
+      ],
+      [
+        1,
+        0,
+        3,
+        0,
+        0,
+        0
+      ]
+    ],
+    "cons": [
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1
+    ],
+    "enabled": [
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      true,
+      false
+    ],
+    "prior": 0.3
+  },
+  "threshold": 0.6037947927862405,
+  "good_values": {
+    "account_risk": 0.0,
+    "history_risk": 0.0,
+    "savings_risk": 0.06302662591722562,
+    "employment_length": 1.0,
+    "loan_duration": 0.125,
+    "installment_burden": 0.0
+  },
+  "meta": {
+    "features": [
+      "account_risk",
+      "history_risk",
+      "savings_risk",
+      "employment_length",
+      "loan_duration",
+      "installment_burden"
+    ],
+    "labels": {
+      "account_risk": "checking-account status risk",
+      "history_risk": "past credit history risk",
+      "savings_risk": "savings level risk",
+      "employment_length": "length of employment",
+      "loan_duration": "loan duration",
+      "installment_burden": "installment burden"
+    },
+    "direction": {
+      "account_risk": "lower",
+      "history_risk": "lower",
+      "savings_risk": "lower",
+      "employment_length": "higher",
+      "loan_duration": "lower",
+      "installment_burden": "lower"
+    },
+    "unit": {
+      "account_risk": [
+        1,
+        "{:.2f}"
+      ],
+      "history_risk": [
+        1,
+        "{:.2f}"
+      ],
+      "savings_risk": [
+        1,
+        "{:.2f}"
+      ],
+      "employment_length": [
+        1,
+        "{:.2f}"
+      ],
+      "loan_duration": [
+        72,
+        "{:.0f} months"
+      ],
+      "installment_burden": [
+        1,
+        "{:.2f}"
+      ]
+    }
+  },
+  "samples": [
+    {
+      "name": "Applicant A (low risk)",
+      "x": [
+        0.0,
+        0.0,
+        0.9999999951679587,
+        1.0,
+        0.16666666666666666,
+        1.0
+      ],
+      "actual_default": 0
+    },
+    {
+      "name": "Applicant B (middle)",
+      "x": [
+        0.7013124450702675,
+        0.3096158487408634,
+        0.9999999951679587,
+        0.5,
+        0.09722222222222222,
+        0.3333333333333333
+      ],
+      "actual_default": 0
+    },
+    {
+      "name": "Applicant C (high risk)",
+      "x": [
+        0.9999999971361134,
+        0.7204819261400192,
+        0.9999999951679587,
+        1.0,
+        0.6666666666666666,
+        0.6666666666666666
+      ],
+      "actual_default": 1
+    },
+    {
+      "name": "Applicant D (caught defaulter)",
+      "x": [
+        0.9999999971361134,
+        0.3096158487408634,
+        0.9999999951679587,
+        0.5,
+        0.6666666666666666,
+        0.6666666666666666
+      ],
+      "actual_default": 1
+    },
+    {
+      "name": "Applicant E (correctly cleared)",
+      "x": [
+        0.7013124450702675,
+        0.3096158487408634,
+        0.14764570700979696,
+        0.25,
+        0.20833333333333334,
+        1.0
+      ],
+      "actual_default": 0
+    }
+  ],
+  "feature_names": [
+    "account_risk",
+    "history_risk",
+    "savings_risk",
+    "employment_length",
+    "loan_duration",
+    "installment_burden"
+  ],
+  "rules": [
+    "IF past credit history risk is Low AND loan duration is Low THEN LOW default risk",
+    "IF checking-account status risk is Low AND length of employment is High THEN LOW default risk",
+    "IF checking-account status risk is High AND savings level risk is High AND loan duration is Medium THEN HIGH default risk"
+  ]
+}
